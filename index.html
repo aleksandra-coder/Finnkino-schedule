@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Finnkino movie list</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link href = "page-stylesheet.css" rel = "stylesheet" type = "text/css" />
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Amatic+SC&family=Audiowide&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	</head>
+	<body>
+
+		<div style="padding-top: 25px">
+ 			<a href=index.html><img src="home icon.png" width=35px></a>
+			<div style="float:right">
+	   	<a href=Result.html><img src="user icon.png" width=35><br></a>
+			</div>
+		</div>
+
+
+
+		<center>
+		<div class="header">
+				<p><span class=title>FINNKINO MOVIE</span></p>
+				<p><span class=subtitle>Search for your favorite movies</span></p>
+		</div>
+		
+		<div>
+		<form class="example" action="">
+			
+			<select name="searchCinema" id="searchCinema" size="2">
+				
+				<option value="Omena">Omena, Espoo</option>
+				<option value="Sello">Sello, Espoo</option>
+				<option value="Itis">Itis, Helsinki</option>
+				<option value="Kinopalatsi">Kinopalatsi, Helsinki</option>
+				<option value="Maxim">Maxim, Helsinki</option>
+				<option value="Tennispalatsi">Tennispalatsi, Helsinki</option>
+				<option value="Flamingo">Flamingo, Vantaa</option>
+
+			</select>
+			  <button onclick="loadDoc()" class="submit"><i class="fa fa-search"></i></button> 
+			  
+		</form>
+		</div>
+
+		<!--  I didn't do anything to make the table nice... we can keep it on this site or make another page. And of course build it properly. -->
+		<div class="table" id="schedule">
+			<table>
+				<tbody>
+					<tr>
+						<td><strong>Cinema Name</strong></td>
+						<td><strong></strong></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		</center>
+
+		<script src="finnkino_1.js"></script>
+
+	</body>
+</html>
