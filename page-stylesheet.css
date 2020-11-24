@@ -1,5 +1,5 @@
 body {
-  background-color: #ffffff;
+  background-color: #e9e5e5;
   width: 65%;
   margin-left: auto;
   margin-right: auto;
@@ -26,14 +26,11 @@ body {
   box-sizing: border-box;
 }
 
-/* Style the search field
-form.example input[type="text"] {
-  padding: 10px;
-  font-size: 17px;
-  border: 1px solid grey;
-  float: left;
-  width: 80%;
-  background: #f1f1f1;
+/* style table headers */
+th {
+  font-family: "Audiowide";
+  font-size: 20px;
+  color: #8b0000;
 }
 
 
