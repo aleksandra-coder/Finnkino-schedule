@@ -35,11 +35,12 @@ function loadDoc() {
   function myFunction(xml) {
     var i;
     var xmlDoc = xml.responseXML;
-    var movieTitle = xmlDoc.getElementsByTagName("Show");
-    table = "<tr><th>Movie Title</th><th>Poster</th><th>Genre</th><th>Language and Display</th></tr>";
+    var movieTitle = xmlDoc.getElementsByTagName("Show"); 
+    table = "";
+
     for (i = 0; i <movieTitle.length; i++) { 
-        table += "<tr><td>" + movieTitle[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue + "</td><td>" + movieTitle[i].getElementsByTagName("RatingImageUrl")[0].childNodes[0].nodeValue + "</td><td>" + movieTitle[i].getElementsByTagName("Genres")[0].childNodes[0].nodeValue + "</td><td>" + movieTitle[i].getElementsByTagName("PresentationMethodAndLanguage")[0].childNodes[0].nodeValue + "</td></tr>";
+        table += "<tr><td>" + movieTitle[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue + "</td><td><img src='" + movieTitle[i].getElementsByTagName("EventSmallImageLandscape")[0].childNodes[0].nodeValue + "'/></td><td>" + movieTitle[i].getElementsByTagName("Genres")[0].childNodes[0].nodeValue + "</td><td>" + movieTitle[i].getElementsByTagName("PresentationMethodAndLanguage")[0].childNodes[0].nodeValue + "</td><td>" ;
                    
     }
-    document.getElementById("schedule").innerHTML = table;
+    document.getElementById("schedule").innerHTML += table;
   }
