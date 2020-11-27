@@ -1,5 +1,5 @@
 body {
-  background-color: #ffffff;
+  background-color: #e9e5e5;
   width: 65%;
   margin-left: auto;
   margin-right: auto;
@@ -26,19 +26,17 @@ body {
   box-sizing: border-box;
 }
 
-/* Style the search field */
-form.example input[type="text"] {
-  padding: 10px;
-  font-size: 17px;
-  border: 1px solid grey;
-  float: left;
-  width: 80%;
-  background: #f1f1f1;
+/* style table headers */
+th {
+  font-family: "Audiowide";
+  font-size: 20px;
+  color: #8b0000;
 }
 
-/* Style the submit button */
+
+ /* Style the submit button */ 
 form.example button {
-  float: left;
+  float: right;
   width: 20%;
   padding: 10px;
   background: #8b0000;
@@ -51,7 +49,7 @@ form.example button {
 
 form.example button:hover {
   background: #800000;
-}
+} 
 
 /* Clear floats */
 form.example::after {
@@ -59,6 +57,29 @@ form.example::after {
   clear: both;
   display: table;
 }
+
+
+/* style input in the search box */
+
+form.example input[type="text"] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 100%;
+  background: #f1f1f1;
+}
+
+form.example option {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 100%;
+  background: #f1f1f1;
+}
+
+
 
 /*Login styling */
 

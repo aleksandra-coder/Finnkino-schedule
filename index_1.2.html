@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Finnkino movie list</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link href = "page-stylesheet.css" rel = "stylesheet" type = "text/css" />
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Amatic+SC&family=Audiowide&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	</head>
+	<body>
+
+		<div style="padding-top: 25px">
+ 			<a href=index.html><img src="home icon.png" width=35px></a>
+			<div style="float:right">
+	   	<a href=Result.html><img src="user icon.png" width=35><br></a>
+			</div>
+		</div>
+
+
+
+		<center>
+		<div class="header">
+				<p><span class=title>FINNKINO MOVIE</span>
+				  </p>
+				<p><span class=subtitle>Choose a cinema from the list and find movies</span></p>
+		</div>
+		
+		<div>
+		<form class="example" action="">
+			
+			<select name="searchCinema" id="searchCinema" size="2">
+				
+				<option value="Omena">Omena, Espoo</option>
+				<option value="Sello">Sello, Espoo</option>
+				<option value="Itis">Itis, Helsinki</option>
+				<option value="Kinopalatsi">Kinopalatsi, Helsinki</option>
+				<option value="Maxim">Maxim, Helsinki</option>
+				<option value="Tennispalatsi">Tennispalatsi, Helsinki</option>
+				<option value="Flamingo">Flamingo, Vantaa</option>
+
+			</select>
+
+			<select name="allday" id="day" size="2">
+				
+				<option value="Monday">Monday</option>
+				<option value="Tuesday">Tuesday</option>
+				<option value="Wednesday">Wednesday</option>
+				<option value="Thursday">Thursday</option>
+				<option value="Friday">Friday</option>
+				<option value="Saturday">Saturday</option>
+				<option value="Sunday">Sunday</option>
+
+			</select>
+			  <button type="button" onclick="loadDoc()"><i class="fa fa-search"></i></button> 
+			<div>
+				<br>
+				<p><span class=subtitle>Serach for a movie by title</span></p>
+				<input type="text" id="moviesearch" placeholder="Search.."> <button onclick="movieSearch()"><i class="fa fa-search"></i></button>
+				<!-- <select id="movieInfo" style='width: 200px;' onclick="movieSearch()"> -->
+				<!-- <option value=" ">Select title</option> -->
+			</select>
+			
+			</div>
+			
+			 <div class="movie">
+				<p id="synopsis"></p>
+				<p id="movieInfo"></p>
+			</div> 
+		</form>
+		</div>
+		
+		<div class="container" >
+			<table id="schedule" border="1">
+				<!-- <tbody>
+					<tr>
+						<th>Movie Title</th>
+						<th>Poster</th>
+						<th>Genres</th>
+						<th>Language and Display</th>
+						<th>Length in minutes</th>
+					</tr>
+					
+				</tbody> -->
+			</table>
+		</div>
+		</center>
+
+		<script src="finnkino_1.2.js"></script>
+
+	</body>
+</html>
