@@ -57,15 +57,20 @@ function loadDoc() {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", "https://www.finnkino.fi/xml/Events/", true);
     xmlhttp.send();
-    var xmlDoc = xmlhttp.responseXML;
-    var readMore =xmlDoc.getElementsByTagName("Event");
-    document.getElementById("movieInfo").innerHTML =
-    "Title: " +
-    readMore[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue +
-    "<br>Synopsis: " +
-    readMore[i].getElementsByTagName("Synopsis")[0].childNodes[0].nodeValue +
-    "<br>Year: " + 
-    readMore[i].getElementsByTagName("ProductionYear")[0].childNodes[0].nodeValue;
+
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var xmlDoc = xmlhttp.responseXML;
+        var readMore =xmlDoc.getElementsByTagName("Event");
+        document.getElementById("movieInfo").innerHTML =
+        "Title: " +
+        readMore[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue +
+        "<br>Synopsis: " +
+        readMore[i].getElementsByTagName("Synopsis")[0].childNodes[0].nodeValue +
+        "<br>Year: " + 
+        readMore[i].getElementsByTagName("ProductionYear")[0].childNodes[0].nodeValue;
+      }
+    }    
   }   
 
 
@@ -98,26 +103,33 @@ function loadDoc() {
 // }
 
 // custom search for a movie - user types a title and gets info
-  function movieSearch(url) {
+  function movieSearch(e) {    
+    e.preventDefault();
+    var keyword = document.getElementById("moviesearch").value;
     var xmlhttp = new XMLHttpRequest();
     var url = 'https://www.finnkino.fi/xml/Events/';
     xmlhttp.open("GET", url, true);
- 	xmlhttp.send();
+ 	  xmlhttp.send();
     xmlhttp.onreadystatechange = function() {
+
 		if ( xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             // mFunction(this);
-            var xmlDoc = xml.responseXML;
+            var xmlDoc = xmlhttp.responseXML;
             console.log(xmlDoc);
 
             var readMore = xmlDoc.getElementsByTagName("Event");
             var info ="";
 
             for (i = 0; i < readMore.length; i++) {
+              var title = readMore[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue;
+
+              if (title === keyword) {
                 info += "<tr><td>";
-                info += readMore[i].getElementsByTagName("Title").childNodes[0].nodeValue;
-                info += "</td><td><img src='" + readMore[i].getElementsByTagName("EventLargeImagePortrait")[0].childNodes[1].nodeValue + "'/></td></tr>"; 
+                info += readMore[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue;
+                info += "</td><td><img src='" + readMore[i].getElementsByTagName("EventLargeImagePortrait")[0].childNodes[0].nodeValue + "'/></td></tr>"; 
                 info += "<tr>Synopsis: " + readMore[i].getElementsByTagName("Synopsis")[0].childNodes[0].nodeValue + "</tr>"; 
                 info += "<tr>Year: " + readMore[i].getElementsByTagName("ProductionYear")[0].childNodes[0].nodeValue + "</tr>";
+              }                
             }
               document.getElementById("movieInfo").innerHTML = info;
               
