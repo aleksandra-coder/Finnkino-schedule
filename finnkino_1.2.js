@@ -43,7 +43,7 @@ function loadDoc() {
 
     table = "<tr><th>Movie Title</th><th>Poster</th><th>Genres</th><th>Language and Display</th><th>Length in minutes</th></tr>";
     for (i = 0; i <movieTitle.length; i++) { 
-        table += "<tr onclick='showEvent(" + i + ")'><td>" + movieTitle[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue + "</td><td><img src='" + movieTitle[i].getElementsByTagName("EventSmallImageLandscape")[0].childNodes[0].nodeValue + "'/></td><td>" + movieTitle[i].getElementsByTagName("Genres")[0].childNodes[0].nodeValue + "</td><td>" + movieTitle[i].getElementsByTagName("PresentationMethodAndLanguage")[0].childNodes[0].nodeValue + "</td><td>" + movieTitle[i].getElementsByTagName("LengthInMinutes")[0].childNodes[0].nodeValue + "</td>";
+        table += "<tr onclick='showEvent(" + movieTitle[i].getElementsByTagName("EventID")[0].childNodes[0].nodeValue + ")'><td>" + movieTitle[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue + "</td><td><img src='" + movieTitle[i].getElementsByTagName("EventSmallImageLandscape")[0].childNodes[0].nodeValue + "'/></td><td>" + movieTitle[i].getElementsByTagName("Genres")[0].childNodes[0].nodeValue + "</td><td>" + movieTitle[i].getElementsByTagName("PresentationMethodAndLanguage")[0].childNodes[0].nodeValue + "</td><td>" + movieTitle[i].getElementsByTagName("LengthInMinutes")[0].childNodes[0].nodeValue + "</td>";
     }
     document.getElementById("schedule").innerHTML = table;
   
@@ -53,9 +53,9 @@ function loadDoc() {
   }
 
 //   this is function to get more info after clik´cking on a movie from the list
-  function showEvent(i) {
+  function showEvent(eventId) {
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", "https://www.finnkino.fi/xml/Events/", true);
+    xmlhttp.open("GET", "https://www.finnkino.fi/xml/Events?eventID=" + eventId, true);
     xmlhttp.send();
 
     xmlhttp.onreadystatechange = function() {
@@ -64,11 +64,11 @@ function loadDoc() {
         var readMore =xmlDoc.getElementsByTagName("Event");
         document.getElementById("movieInfo").innerHTML =
         "Title: " +
-        readMore[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue +
+        readMore[0].getElementsByTagName("Title")[0].childNodes[0].nodeValue +
         "<br>Synopsis: " +
-        readMore[i].getElementsByTagName("Synopsis")[0].childNodes[0].nodeValue +
+        readMore[0].getElementsByTagName("Synopsis")[0].childNodes[0].nodeValue +
         "<br>Year: " + 
-        readMore[i].getElementsByTagName("ProductionYear")[0].childNodes[0].nodeValue;
+        readMore[0].getElementsByTagName("ProductionYear")[0].childNodes[0].nodeValue;
       }
     }    
   }   
