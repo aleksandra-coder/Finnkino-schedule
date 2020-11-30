@@ -40,19 +40,17 @@ function loadDoc() {
     var xmlDoc = xml.responseXML;
     var movieTitle = xmlDoc.getElementsByTagName("Show");
     
-
+// looping through all the shows and fetching information for each show, placing the info in a table
     table = "<tr><th>Movie Title</th><th>Poster</th><th>Genres</th><th>Language and Display</th><th>Length in minutes</th></tr>";
     for (i = 0; i <movieTitle.length; i++) { 
-        table += "<tr onclick='showEvent(" + movieTitle[i].getElementsByTagName("EventID")[0].childNodes[0].nodeValue + ")'><td>" + movieTitle[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue + "</td><td><img src='" + movieTitle[i].getElementsByTagName("EventSmallImageLandscape")[0].childNodes[0].nodeValue + "'/></td><td>" + movieTitle[i].getElementsByTagName("Genres")[0].childNodes[0].nodeValue + "</td><td>" + movieTitle[i].getElementsByTagName("PresentationMethodAndLanguage")[0].childNodes[0].nodeValue + "</td><td>" + movieTitle[i].getElementsByTagName("LengthInMinutes")[0].childNodes[0].nodeValue + "</td>";
+        table += "<tr onclick='showEvent(" + movieTitle[i].getElementsByTagName("EventID")[0].childNodes[0].nodeValue + ")'><td>" + movieTitle[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue + "</td><td><img src='" + movieTitle[i].getElementsByTagName("EventSmallImageLandscape")[0].childNodes[0].nodeValue + "'/></td><td>" + movieTitle[i].getElementsByTagName("Genres")[0].childNodes[0].nodeValue + "</td><td>" + movieTitle[i].getElementsByTagName("PresentationMethodAndLanguage")[0].childNodes[0].nodeValue + "</td><td>" + movieTitle[i].getElementsByTagName("LengthInMinutes")[0].childNodes[0].nodeValue + "</td></tr>";
     }
     document.getElementById("schedule").innerHTML = table;
   
-    console.log(movieTitle);
-       
-    
-  }
+    console.log(movieTitle);  
+}
 
-//   this is function to get more info after clik´cking on a movie from the list
+//  this is function to get more info after clicking on a movie from the list using parameter eventId
   function showEvent(eventId) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", "https://www.finnkino.fi/xml/Events?eventID=" + eventId, true);
@@ -61,12 +59,13 @@ function loadDoc() {
     xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         var xmlDoc = xmlhttp.responseXML;
-        var readMore =xmlDoc.getElementsByTagName("Event");
+        var readMore = xmlDoc.getElementsByTagName("Event");
+        
         document.getElementById("movieInfo").innerHTML =
-        "Title: " +
-        readMore[0].getElementsByTagName("Title")[0].childNodes[0].nodeValue +
+        "<b>Title: " +
+        readMore[0].getElementsByTagName("Title")[0].childNodes[0].nodeValue + "</b>" +
         "<br>Synopsis: " +
-        readMore[0].getElementsByTagName("Synopsis")[0].childNodes[0].nodeValue +
+        readMore[0].getElementsByTagName("ShortSynopsis")[0].childNodes[0].nodeValue +
         "<br>Year: " + 
         readMore[0].getElementsByTagName("ProductionYear")[0].childNodes[0].nodeValue;
       }
@@ -74,37 +73,10 @@ function loadDoc() {
   }   
 
 
-
-
-  // var xmlhttp = new XMLHttpRequest();
-
-// xmlhttp.open("GET", "https://www.finnkino.fi/xml/Events/", true);
-// xmlhttp.send();
-// var xmlDoc = xmlhttp.responseXML;
-// var readMore = xmlDoc.getElementsByTagName("Event");
-// var table ="<Events>";
-// for (i = 0; i < readMore.length; i++) { 
-//     table += "<tr onclick='showEvent(" + i + ")'><td>";
-//     table += readMore[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue;
-//     table += "</td><td>";
-//     table +=  readMore[i].getElementsByTagName("RatingImageUrl")[0].childNodes[0].nodeValue;
-//     table += "</td></tr>";  
-//   }
-// document.getElementById("synopsis").innerHTML = table;
-
-// function showEvent(i) {
-//   document.getElementById("synopsis").innerHTML =
-//   "Title: " +
-//   readMore[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue +
-//   "<br>Synopsis: " +
-//   readMore[i].getElementsByTagName("Synopsis")[0].childNodes[0].nodeValue +
-//   "<br>Year: " + 
-//   readMore[i].getElementsByTagName("ProductionYear")[0].childNodes[0].nodeValue;
-// }
-
-// custom search for a movie - user types a title and gets info
+// custom search for a movie - user types a title, clicks the button search, and gets more information
   function movieSearch(e) {    
     e.preventDefault();
+    // setting up a variable for user's input in th esearch field
     var keyword = document.getElementById("moviesearch").value;
     var xmlhttp = new XMLHttpRequest();
     var url = 'https://www.finnkino.fi/xml/Events/';
@@ -113,22 +85,24 @@ function loadDoc() {
     xmlhttp.onreadystatechange = function() {
 
 		if ( xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            // mFunction(this);
             var xmlDoc = xmlhttp.responseXML;
             console.log(xmlDoc);
 
             var readMore = xmlDoc.getElementsByTagName("Event");
             var info ="";
-
+          // looping through all events searching by title 
             for (i = 0; i < readMore.length; i++) {
               var title = readMore[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue;
 
+              // condition if title equals keyword (user's input) show information about the movie
               if (title === keyword) {
-                info += "<tr><td>";
-                info += readMore[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue;
-                info += "</td><td><img src='" + readMore[i].getElementsByTagName("EventLargeImagePortrait")[0].childNodes[0].nodeValue + "'/></td></tr>"; 
-                info += "<tr>Synopsis: " + readMore[i].getElementsByTagName("Synopsis")[0].childNodes[0].nodeValue + "</tr>"; 
-                info += "<tr>Year: " + readMore[i].getElementsByTagName("ProductionYear")[0].childNodes[0].nodeValue + "</tr>";
+                info += "<tr><td><b>";
+                info += readMore[i].getElementsByTagName("Title")[0].childNodes[0].nodeValue + "</b></td><br><hr>";
+                info += "<td><img src='" + readMore[i].getElementsByTagName("EventMediumImagePortrait")[0].childNodes[0].nodeValue + "'/></td></tr><br><hr>"; 
+                info += "<tr>" + readMore[i].getElementsByTagName("Synopsis")[0].childNodes[0].nodeValue + "</tr><br><hr>";
+                info += "</td><td><img src='" + readMore[i].getElementsByTagName("EventLargeImageLandscape")[0].childNodes[0].nodeValue + "'/></td></tr><br><hr>";
+                info += "<tr>Rating: " + readMore[i].getElementsByTagName("Rating")[0].childNodes[0].nodeValue + "</tr><br>";
+                info += "<tr>Production year: " + readMore[i].getElementsByTagName("ProductionYear")[0].childNodes[0].nodeValue + "</tr>";
               }                
             }
               document.getElementById("movieInfo").innerHTML = info;
@@ -137,90 +111,8 @@ function loadDoc() {
     }
 }
 
-// All the below commented codes are several diferent trials and unfortunately errors to get the search by title working
-   
-			// document.getElementById("movieInfo").innerHTML = xmlhttp.responseText;
-// 	var movieSearch = document.getElementById("moviesearch").value;
-// 	var url = "https://www.finnkino.fi/xml/Events/?eventID=" + movieSearch;
-// 	xmlhttp.open("GET", url, true);
-// 	xmlhttp.send();
-
-// }
-
-//     function mFunction(xml) {
-//         var i;
-//         var xmlDoc = xml.responseXML;
-//             var readMore = xmlDoc.getElementsByTagName("Event");
-//             var info ="";
-//             // looping through all events to find the searched title
-//         for (i = 0; i < readMore.length; i++) {
-//             info += "<tr><td>";
-//             info += readMore[i].getElementsByTagName("Title").childNodes[0].nodeValue;
-//             info += "</td><td><img src='" + readMore[i].getElementsByTagName("EventLargeImagePortrait")[0].childNodes[1].nodeValue + "'/></td></tr>"; 
-//             info += "<tr>Synopsis: " + readMore[i].getElementsByTagName("Synopsis")[0].childNodes[0].nodeValue + "</tr>"; 
-//             info += "<tr>Year: " + readMore[i].getElementsByTagName("ProductionYear")[0].childNodes[0].nodeValue + "</tr>";
-//         }
-//           document.getElementById("movieInfo").innerHTML = info;
-                
-//     }
-            
-			
-                    
-    // function movieSearch() {
-
-    //     $(document).ready(
-    //         function (){
-    //             $.ajax({                    
-
-    //                 url: "https://www.finnkino.fi/xml/Events",
-
-    //                 dataType: "xml",
-
-    //                 success: xmlParser
-
-    //             });
-    //         }
-    //     );
-    //         function xmlParser(xml) {
-    //             $(xml).find("Event").each(function() {
-    //                 $("#movieInfo").append('<option value="' + $(this).find("Title").text() +'">' + '</option>');
-    //             }
-    //             );
-    //         }
-    //           // SHOW SELECTED VALUE.
-    //     $('#movieinfo').change(function () {
-    //         $('#msg').text('Selected Item: ' + this.options[this.selectedIndex].text);
-    //     });
-    
-    
-    
-//         $(function() {
-//         $.ajax({
-//             type: "GET",
-//             url: "https://www.finnkino.fi/xml/Events",
-//             dataType: "xml",
-//             success: parseXml
-//         });
-//     });
-//     function parseXML(xml) {
-//     var $select = $('#moviesearch');
-
-//     $('<option />', { text: 'Please make a selection' }).appendTo($select);
-
-//     $(xml).find('Event').each(function(){
-//         var title = $(this).attr('name');
-//         $('<option />', { text: title, value: title }).appendTo($select);
-//     });
-
-//     $select.on("change", function() {
-//         var value = $(this).val();
-//         var $node = $(xml).find('<option value="' + value.Title + '">' + value.Synopsis + '</option>');
-
-//         $("#title").val($node.find("Title").text());
-//         $("#synopsis").val($node.find("Synopsis").text());
-//         $("#year").val($node.find("ProductionYear").text());
-//         $("#length").val($node.find("LengthInMinutes").text());
-//     });
-// }
-
-
+//  jQuery function for animation effects
+  $('.search').click(function() {
+    $('.searchForm').hide();
+    $('.searchForm').slideDown(2000);
+  });

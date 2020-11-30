@@ -13,27 +13,15 @@
 
 	</head>
 	<body>
-
-		<div style="padding-top: 25px">
- 			<a href=index.html><img src="home icon.png" width=35px></a>
-			<div style="float:right">
-	   	<a href=Result.html><img src="user icon.png" width=35><br></a>
-			</div>
-		</div>
-
-
+		<div class="icon"><img src="finnkinon-logo.jpg" width=500px><h1 class="title">movie serach</h1></div>
 
 		<center>
-		<div class="header">
-				<p><span class=title>FINNKINO MOVIE</span>
-				  </p>
-				<p><span class=subtitle>Choose a cinema from the list and find movies</span></p>
-		</div>
-		
-		<div>
+				
+		<div class="searchForm">
+
 		<form class="example" action="">
-			
-			<select name="searchCinema" id="searchCinema" size="2">
+			<p><span class=subtitle>Choose a cinema from the list and find movies</span></p>
+			<select name="searchCinema" id="searchCinema">
 				
 				<option value="Omena">Omena, Espoo</option>
 				<option value="Sello">Sello, Espoo</option>
@@ -45,7 +33,7 @@
 
 			</select>
 
-			<select name="allday" id="day" size="2">
+			<select name="allday" id="day">
 				
 				<option value="Monday">Monday</option>
 				<option value="Tuesday">Tuesday</option>
@@ -56,39 +44,36 @@
 				<option value="Sunday">Sunday</option>
 
 			</select>
-			  <button type="button" onclick="loadDoc()"><i class="fa fa-search"></i></button> 
-			<div>
+			  <button class="search" type="button" onclick="loadDoc()"><i class="fa fa-search"></i></button> 
+			
+		
 				<br>
-				<p><span class=subtitle>Serach for a movie by title</span></p>
-				<input type="text" id="moviesearch" placeholder="Search.."> <button onclick="movieSearch(event)"><i class="fa fa-search"></i></button>
-				<!-- <select id="movieInfo" style='width: 200px;' onclick="movieSearch()"> -->
-				<!-- <option value=" ">Select title</option> -->
-			</select>
-			
-			</div>
-			
-			 <div class="movie">
-				<p id="synopsis"></p>
-				<p id="movieInfo"></p>
-			</div> 
+				<p><span class=subtitle>Search by title</span></p>
+				<input type="text" id="moviesearch" placeholder="Search.."> 
+				<button class="search" onclick="movieSearch(event)"><i class="fa fa-search"></i></button>	
+				<br>
+
 		</form>
 		</div>
+		<br>
+		<div class="movie">
+			<p id="synopsis"></p>
+			<p id="movieInfo"></p>
+		</div> 
 		
 		<div class="container" >
 			<table id="schedule" border="1">
-				<!-- <tbody>
-					<tr>
-						<th>Movie Title</th>
-						<th>Poster</th>
-						<th>Genres</th>
-						<th>Language and Display</th>
-						<th>Length in minutes</th>
-					</tr>
-					
-				</tbody> -->
 			</table>
 		</div>
+		
 		</center>
+
+		<footer class="footer text-center">
+			<div class="footer">
+				<small>Copyright &copy; Nguyen Nguyen &amp; Aleksandra Postola 2020 Movie Search</small>
+			</div>
+		</footer>
+
 
 		<script src="finnkino_1.2.js"></script>
 
