@@ -10,7 +10,8 @@ body {
 }
 
 .title {
-  font-family: Helvetica, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-size: 50px;
   color: #7a704c;
   text-align: right;
@@ -44,7 +45,7 @@ center {
   background-size: cover;
 }
 
- /* Style the submit button */ 
+/* Style the submit button */
 form.example button {
   float: right;
   width: 20%;
@@ -58,8 +59,8 @@ form.example button {
 }
 
 form.example button:hover {
-  background:#997e06;
-} 
+  background: #997e06;
+}
 
 /* Clear floats */
 form.example::after {
@@ -67,7 +68,6 @@ form.example::after {
   clear: both;
   display: table;
 }
-
 
 /* style input in the search boxes */
 
@@ -81,7 +81,8 @@ form.example #moviesearch {
   outline: none;
 }
 
-form.example input[type=text], select {
+form.example input[type="text"],
+select {
   padding: 10px;
   font-size: 15px;
   border: 1px solid rgb(136, 135, 132);
@@ -126,9 +127,9 @@ img {
 }
 /* Use a media query to add a breakpoint at 800px: */
 @media screen and (max-width: 800px) {
-  .left, .main, .right {
+  .left,
+  .main,
+  .right {
     width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
   }
 }
-
-

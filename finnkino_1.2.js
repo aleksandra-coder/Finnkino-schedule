@@ -80,7 +80,7 @@ function loadDoc() {
 
 // custom search for a movie - user types a title, clicks the button search, and gets more information
   function movieSearch(e) {    
-    e.preventDefault();
+    e.preventDefault(); //prevent the form from being submitted
     // setting up a variable for user's input in the search field
     var keyword = document.getElementById("moviesearch").value;
     var xmlhttp = new XMLHttpRequest();
