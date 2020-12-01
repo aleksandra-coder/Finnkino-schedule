@@ -13,14 +13,16 @@
 
 	</head>
 	<body>
+		<!-- Finnkino logo -->
 		<div class="icon"><img src="finnkinon-logo.jpg" width=500px><h1 class="title">movie serach</h1></div>
 
 		<center>
-				
+		<!-- search form -->
 		<div class="searchForm">
 
 		<form class="example" action="">
-			<p><span class=subtitle>Choose a cinema from the list and find movies</span></p>
+			<!-- search by cinema name and day of the week -->
+			<p><span class="subtitle">Choose a cinema from the list and find movies</span></p>
 			<select name="searchCinema" id="searchCinema">
 				
 				<option value="Omena">Omena, Espoo</option>
@@ -44,23 +46,30 @@
 				<option value="Sunday">Sunday</option>
 
 			</select>
-			  <button class="search" type="button" onclick="loadDoc()"><i class="fa fa-search"></i></button> 
-			
+			  	<button class="search" type="button" onclick="loadDoc()"><i class="fa fa-search"></i></button> 			
 		
+				  <!-- search by title field -->
 				<br>
-				<p><span class=subtitle>Search by title</span></p>
+				<p><span class="subtitle">Search by title</span></p>
 				<input type="text" id="moviesearch" placeholder="Search.."> 
 				<button class="search" onclick="movieSearch(event)"><i class="fa fa-search"></i></button>	
 				<br>
 
 		</form>
 		</div>
+
+		<div>
+			<!-- button to display safety instructions image -->
+			<button class="show">Click to see safety instructions</button>
+			<p><img class="safety" src="Turvallisuus_Finnkinolla.jpg" width=700px style="display:none;"></p>
+		</div>
 		<br>
+		<!-- fields reserved to display information from xml files -->
 		<div class="movie">
 			<p id="synopsis"></p>
 			<p id="movieInfo"></p>
 		</div> 
-		
+		<!-- here goes a table with movies feched from xml file -->
 		<div class="container" >
 			<table id="schedule" border="1">
 			</table>
@@ -68,6 +77,7 @@
 		
 		</center>
 
+		<!-- footer -->
 		<footer class="footer text-center">
 			<div class="footer">
 				<small>Copyright &copy; Nguyen Nguyen &amp; Aleksandra Postola 2020 Movie Search</small>
