@@ -2,6 +2,7 @@
 
 // fucntion is called after the user clicks the search button
 function loadDoc() {
+    clearMovieInfo();
     var xmlhttp = new XMLHttpRequest();
     // adding an event listener to xmlhttp, after getting a response, browser can run the function
     xmlhttp.onreadystatechange = function() {
@@ -118,6 +119,10 @@ function loadDoc() {
               
         }
     }
+}
+// clear movie content inside element with id ≈ movieInfo
+function clearMovieInfo() {
+  document.getElementById("movieInfo").innerHTML = "";
 }
 
 //  jQuery functions for animation effects: slide down
